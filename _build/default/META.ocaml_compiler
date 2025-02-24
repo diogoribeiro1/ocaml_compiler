@@ -1,0 +1,9 @@
+package "lib" (
+  directory = "lib"
+  description = ""
+  requires = ""
+  archive(byte) = "ocaml_compiler_lib.cma"
+  archive(native) = "ocaml_compiler_lib.cmxa"
+  plugin(byte) = "ocaml_compiler_lib.cma"
+  plugin(native) = "ocaml_compiler_lib.cmxs"
+)

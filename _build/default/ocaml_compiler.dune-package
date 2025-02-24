@@ -1,0 +1,41 @@
+(lang dune 3.17)
+(name ocaml_compiler)
+(sections (lib .) (libexec .) (bin ../../bin))
+(files
+ (lib
+  (META
+   dune-package
+   lib/ocaml_compiler_lib.a
+   lib/ocaml_compiler_lib.cma
+   lib/ocaml_compiler_lib.cmi
+   lib/ocaml_compiler_lib.cmt
+   lib/ocaml_compiler_lib.cmx
+   lib/ocaml_compiler_lib.cmxa
+   lib/ocaml_compiler_lib.ml
+   opam))
+ (libexec (lib/ocaml_compiler_lib.cmxs))
+ (bin (ocaml_compiler)))
+(library
+ (name ocaml_compiler.lib)
+ (kind normal)
+ (archives
+  (byte lib/ocaml_compiler_lib.cma)
+  (native lib/ocaml_compiler_lib.cmxa))
+ (plugins
+  (byte lib/ocaml_compiler_lib.cma)
+  (native lib/ocaml_compiler_lib.cmxs))
+ (native_archives lib/ocaml_compiler_lib.a)
+ (main_module_name Ocaml_compiler_lib)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ocaml_compiler_lib)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Ocaml_compiler_lib)
+      (impl (path lib/ocaml_compiler_lib.ml-gen))))
+    (name Ocaml_compiler_lib))
+   (wrapped true))))
