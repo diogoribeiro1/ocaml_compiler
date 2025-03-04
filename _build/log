@@ -1,4 +1,4 @@
-# dune build
+# dune exec ocaml_compiler
 # OCAMLPARAM: unset
 # Shared cache: enabled-except-user-rules
 # Shared cache location: /Users/diogoribeiro/.cache/dune/db
@@ -13,4 +13,4 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/5_/3pgrj_j531373tv7qf606kb80000gn/T/dune_fcf774_output
+$ /opt/homebrew/bin/ocamlc.opt -config > /var/folders/5_/3pgrj_j531373tv7qf606kb80000gn/T/dune_c8e6a3_output

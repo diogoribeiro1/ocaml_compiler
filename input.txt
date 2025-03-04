@@ -1,0 +1,3 @@
+x = 11; 
+
+print(if x < 10 then 100 else 200);

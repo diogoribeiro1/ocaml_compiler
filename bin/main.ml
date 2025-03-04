@@ -5,8 +5,20 @@ open Parser
 open Eval
 
 let () =
-  let input = "x = 11; print(if x < 10 then 100 else 200);" in
-  Printf.printf "Entrada: %s\n" input;
+  (* Nome do arquivo de entrada *)
+  let filename = "input.txt" in
+
+  (* Abrir e ler o conteúdo do arquivo *)
+  let input =
+    let ic = open_in filename in
+    try
+      let line = really_input_string ic (in_channel_length ic) in
+      close_in ic;
+      line
+    with e ->
+      close_in_noerr ic;
+      raise e
+  in
 
   (* Tokenização *)
   let tokens = tokenize input in
@@ -19,11 +31,8 @@ let () =
         let (stmt, rest) = parse_stmt tokens in
         let env = eval_stmt env stmt in
         (* Exibir o ambiente atual *)
-        Printf.printf "Environment: ";
         List.iter (fun (var, value) -> Printf.printf "%s = %d; " var value) env;
-        Printf.printf "\n";
         process_tokens env rest
   in
 
   process_tokens [] tokens
-
